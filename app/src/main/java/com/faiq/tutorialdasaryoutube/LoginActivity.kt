@@ -1,31 +1,29 @@
 package com.faiq.tutorialdasaryoutube
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
-import android.widget.Button
-import android.widget.EditText
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.faiq.tutorialdasaryoutube.databinding.ActivityLoginLinearBinding
 
 
 class LoginActivity: AppCompatActivity() {
-    lateinit var btnlogin: Button
-    lateinit var etEmail: EditText
-    lateinit var etPassword: EditText
+    lateinit var binding: ActivityLoginLinearBinding
     lateinit var email: String
-    lateinit var password : String
+    lateinit var password: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_linear)
+        binding = ActivityLoginLinearBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        Log.d("PRINT-LOG", "1")
+        Log.d("PRINT-LOG", "2")
+        binding.btnLogin.setOnClickListener {
+            email = binding.etEmail.text.toString()
+            password = binding.etPassword.text.toString()
+            Log.d("PRINT-LOG", email)
 
-        btnlogin = findViewById(R.id.btn_login)
-        etEmail = findViewById(R.id.et_email)
-        etPassword = findViewById(R.id.et_password)
 
-        btnlogin.setOnClickListener {
-            email = etEmail.text.toString()
-            password = etPassword.text.toString()
-            if (email.isNullOrEmpty() && password.isNullOrEmpty()) {
+            if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
                 Toast.makeText(applicationContext, "Email atau password masih kosong", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(applicationContext, "Sukses! Anda sudah memasukkan Email dan Password", Toast.LENGTH_SHORT).show()
