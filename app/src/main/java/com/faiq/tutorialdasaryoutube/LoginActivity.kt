@@ -23,11 +23,19 @@ class LoginActivity: AppCompatActivity() {
             Log.d("PRINT-LOG", email)
 
 
-            if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            if (isValidate(email, password)) {
                 Toast.makeText(applicationContext, "Email atau password masih kosong", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(applicationContext, "Sukses! Anda sudah memasukkan Email dan Password", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    fun isValidate(email: String, password: String): Boolean {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            return false
+        } else {
+            return true
         }
     }
 }
